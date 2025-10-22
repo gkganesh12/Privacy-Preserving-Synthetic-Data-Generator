@@ -158,6 +158,10 @@ class DataPreprocessor:
                     
                     # Inverse transform
                     original_values = self.categorical_encoders[col].inverse_transform(encoded_values)
+                    # Replace None values with the most frequent value from training data
+                    if None in original_values.flatten():
+                        most_frequent = self.categorical_imputers[col].statistics_[0]
+                        original_values = np.where(original_values == None, most_frequent, original_values)
                     result_df[col] = original_values.flatten()
         
         # Convert back to original dtypes where possible

@@ -216,6 +216,18 @@ class PrivacyPreservingCTGAN:
         logging.info(f"Generating {num_rows} synthetic rows")
         synthetic_data = self.model.sample(num_rows)
         
+        # Clean up any None values in the generated data
+        for col in synthetic_data.columns:
+            if synthetic_data[col].isna().any():
+                # Replace NaN values with column mean for numerical columns
+                if pd.api.types.is_numeric_dtype(synthetic_data[col]):
+                    col_mean = synthetic_data[col].mean()
+                    synthetic_data[col] = synthetic_data[col].fillna(col_mean)
+                # Replace NaN values with most frequent value for non-numerical columns
+                else:
+                    col_mode = synthetic_data[col].mode()[0] if not synthetic_data[col].mode().empty else "Unknown"
+                    synthetic_data[col] = synthetic_data[col].fillna(col_mode)
+        
         return synthetic_data
     
     def save_model(self, path: str) -> None:
