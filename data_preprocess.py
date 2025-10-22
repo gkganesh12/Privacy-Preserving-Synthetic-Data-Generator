@@ -105,7 +105,7 @@ class DataPreprocessor:
             self.categorical_imputers[col] = imputer
             
             # One-hot encode
-            encoder = OneHotEncoder(sparse=False, handle_unknown='ignore')
+            encoder = OneHotEncoder(sparse_output=False, handle_unknown='ignore')
             values = processed_df[col].astype(str).values.reshape(-1, 1)
             encoder.fit(values)
             encoded = encoder.transform(values)
