@@ -1,0 +1,42 @@
+{
+  "fidelity": {
+    "ks_mean": 0.7572815533980582,
+    "ks_scores": {
+      "AGE": 0.7572815533980582
+    },
+    "chi2_mean": 1.686237339689229e-17,
+    "chi2_scores": {
+      "ANXIETY": 0.0,
+      "LUNG_CANCER": 1.3191795125261218e-225,
+      "WHEEZING": 0.0,
+      "GENDER": 2.5293560095338433e-16,
+      "SMOKING": 0.0,
+      "PEER_PRESSURE": 0.0,
+      "CHRONIC DISEASE": 0.0,
+      "FATIGUE ": 0.0,
+      "YELLOW_FINGERS": 0.0,
+      "COUGHING": 0.0,
+      "ALLERGY ": 0.0,
+      "ALCOHOL CONSUMING": 0.0,
+      "SWALLOWING DIFFICULTY": 0.0,
+      "SHORTNESS OF BREATH": 0.0,
+      "CHEST PAIN": 0.0
+    },
+    "correlation_similarity": null,
+    "pmse_similarity": null,
+    "real_vs_synthetic_auc": null,
+    "overall_fidelity": 0.3786407766990291
+  },
+  "privacy": {
+    "epsilon": 0.9932092174882208,
+    "delta": 1e-05,
+    "membership_inference_accuracy": null,
+    "membership_inference_auc": null,
+    "privacy_score": null
+  },
+  "utility": {
+    "real_model_accuracy": null,
+    "synthetic_model_accuracy": null,
+    "utility_ratio": null
+  }
+}
