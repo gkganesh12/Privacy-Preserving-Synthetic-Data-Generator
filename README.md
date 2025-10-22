@@ -64,7 +64,7 @@ Built with **Streamlit**, offering an interactive and intuitive workflow:
 
 Clone the repository:
 ```bash
-git clone https://github.com/<your-username>/privacy-preserving-synthetic-data-generator.git
+git clone https://github.com/gkganesh12/privacy-preserving-synthetic-data-generator.git
 cd privacy-preserving-synthetic-data-generator
 ```
 
