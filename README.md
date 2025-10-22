@@ -38,6 +38,16 @@ The application will open in your default web browser with the following workflo
 3. **Generate Synthetic Data**: Generate and download synthetic data
 4. **Evaluate & Visualize**: Compute metrics and visualize comparisons between real and synthetic data
 
+## Deployment
+
+This application can be deployed in several ways:
+
+1. **Streamlit Cloud** (Recommended): Deploy directly from GitHub to Streamlit Cloud
+2. **Docker**: Use the provided Dockerfile for containerized deployment
+3. **Heroku**: Use the provided Procfile for Heroku deployment
+
+For detailed deployment instructions, see the [DEPLOYMENT.md](DEPLOYMENT.md) file.
+
 ## Project Structure
 
 - `app.py`: Streamlit interface for the application
