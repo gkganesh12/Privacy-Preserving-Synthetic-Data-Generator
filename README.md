@@ -1,87 +1,175 @@
-# Privacy-Preserving Synthetic Data Generator
+# 🧠 Privacy-Preserving Synthetic Data Generator
 
-A comprehensive system for generating realistic synthetic tabular data while preserving privacy using Differential Privacy techniques. This tool allows users to upload CSV datasets, train synthetic data generators (CTGAN with optional DP integration), generate privacy-safe synthetic samples, and evaluate the fidelity and privacy metrics of the generated data.
+A **comprehensive AI-powered system** for generating realistic **synthetic tabular data** with strong **privacy guarantees** using **Differential Privacy (DP)**.  
+This application enables researchers, developers, and data scientists to **train, generate, and evaluate privacy-safe synthetic datasets** interactively.
 
-## Features
+---
 
-- **Data Preprocessing**: Automatic detection of numerical and categorical features, handling of missing values, normalization, and encoding
-- **Model Training**: CTGAN from SDV with optional Differential Privacy (DP-SGD) using Opacus
-- **Synthetic Data Generation**: Generate configurable number of synthetic rows with privacy guarantees
-- **Evaluation Metrics**:
-  - **Fidelity**: KS test, Chi-square test, correlation comparison, propensity classifier
-  - **Privacy**: Membership inference attack, differential privacy guarantees
-  - **Utility**: Train-on-synthetic, test-on-real ML performance
-- **Visualization**: Distribution comparisons, correlation heatmaps
-- **User Interface**: Interactive Streamlit application
+## 🚀 Live Demo  
+👉 **Try it here:** [https://synthetic-data-generator-gk.streamlit.app/](https://synthetic-data-generator-gk.streamlit.app/)
 
-## Installation
+---
 
-1. Clone this repository
-2. Install the required dependencies:
+## 🧩 Key Features
 
+### 🔧 Data Preprocessing  
+- Automatic detection of numerical and categorical features  
+- Missing value imputation  
+- Data normalization & one-hot encoding  
+- Intelligent feature type handling for mixed datasets  
+
+### 🧠 Model Training  
+- **CTGAN (Conditional Tabular GAN)** from **SDV (Synthetic Data Vault)**  
+- Optional **Differential Privacy integration** using **Opacus** (DP-SGD)  
+- Customizable privacy parameters (ε, δ) for tunable privacy-utility trade-off  
+
+### 🧬 Synthetic Data Generation  
+- Generate configurable numbers of **privacy-safe synthetic rows**  
+- Preserve statistical relationships while hiding individual identities  
+
+### 📊 Evaluation Metrics  
+
+**Fidelity**  
+- Kolmogorov–Smirnov (KS) Test  
+- Chi-Square Test for categorical distributions  
+- Correlation matrix similarity  
+- Propensity score classifier  
+
+**Privacy**  
+- Membership inference attack (MIA) simulation  
+- Differential Privacy (ε, δ) metrics  
+
+**Utility**  
+- Train-on-synthetic, test-on-real (ToS-ToR) ML evaluation  
+
+### 📈 Visualization Dashboard  
+- Side-by-side **distribution comparison plots**  
+- **Correlation heatmaps** for real vs synthetic data  
+- Intuitive metric summaries for quick interpretation  
+
+---
+
+## 🖥️ User Interface  
+Built with **Streamlit**, offering an interactive and intuitive workflow:
+
+1. **Upload Dataset** (CSV)  
+2. **Train Model** (CTGAN + Optional Differential Privacy)  
+3. **Generate Synthetic Data**  
+4. **Evaluate & Visualize** results  
+5. **Download Synthetic Dataset**  
+
+---
+
+## ⚙️ Installation
+
+Clone the repository:
+```bash
+git clone https://github.com/<your-username>/privacy-preserving-synthetic-data-generator.git
+cd privacy-preserving-synthetic-data-generator
+```
+
+Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
-
-Run the Streamlit application:
-
+Run the app locally:
 ```bash
 streamlit run app.py
 ```
 
-The application will open in your default web browser with the following workflow:
+---
 
-1. **Upload Dataset**: Upload a CSV file or provide a file path
-2. **Train Model**: Configure and train a CTGAN model with optional Differential Privacy
-3. **Generate Synthetic Data**: Generate and download synthetic data
-4. **Evaluate & Visualize**: Compute metrics and visualize comparisons between real and synthetic data
+## 🌍 Deployment Options
 
-## Deployment
+This app is ready for deployment on multiple platforms:
 
-This application can be deployed in several ways:
+### ✅ **1. Streamlit Cloud (Recommended)**
+- Easiest method — directly deploy via GitHub  
+- Example live app: [https://synthetic-data-generator-gk.streamlit.app/](https://synthetic-data-generator-gk.streamlit.app/)
 
-1. **Streamlit Cloud** (Recommended): Deploy directly from GitHub to Streamlit Cloud
-2. **Docker**: Use the provided Dockerfile for containerized deployment
-3. **Heroku**: Use the provided Procfile for Heroku deployment
+### 🐳 **2. Docker**
+```bash
+docker build -t synthetic-data-generator .
+docker run -p 8501:8501 synthetic-data-generator
+```
 
-For detailed deployment instructions, see the [DEPLOYMENT.md](DEPLOYMENT.md) file.
+### ☁️ **3. Heroku**
+Use the included `Procfile` for Heroku deployment:
+```bash
+git push heroku main
+```
 
-## Project Structure
+Detailed instructions available in [`DEPLOYMENT.md`](DEPLOYMENT.md).
 
-- `app.py`: Streamlit interface for the application
-- `data_preprocess.py`: Data cleaning, encoding, and type detection
-- `model_train.py`: CTGAN with Differential Privacy integration
-- `evaluate.py`: Fidelity and privacy metric functions
-- `requirements.txt`: List of dependencies
+---
 
-## Privacy Considerations
+## 📁 Project Structure
 
-This tool implements Differential Privacy (DP) to provide formal privacy guarantees for synthetic data generation. The privacy budget (ε) controls the privacy-utility trade-off:
+```
+├── app.py                 # Streamlit user interface
+├── data_preprocess.py     # Data cleaning, encoding, and feature detection
+├── model_train.py         # CTGAN + Differential Privacy training module
+├── evaluate.py            # Evaluation metrics for fidelity, privacy, and utility
+├── requirements.txt       # Python dependencies
+├── DEPLOYMENT.md          # Deployment guide (Streamlit, Docker, Heroku)
+└── README.md              # Project documentation
+```
 
-- Lower ε values (e.g., 0.1-1.0) provide stronger privacy but may reduce data utility
-- Higher ε values (e.g., 5.0-10.0) improve utility but offer weaker privacy guarantees
+---
 
-The membership inference attack metric helps evaluate the risk of privacy leakage in the generated data.
+## 🔒 Privacy Considerations
 
-## Example Output
+This tool employs **Differential Privacy (DP)** to provide **formal privacy guarantees**.  
+The **privacy budget (ε)** defines the balance between privacy and data utility:
 
-After evaluation, the system provides metrics such as:
+| ε (Epsilon) Range | Privacy Level | Utility |
+|--------------------|---------------|----------|
+| 0.1 – 1.0 | 🔐 Strong Privacy | ⚠️ Lower Utility |
+| 5.0 – 10.0 | ⚖️ Moderate Privacy | ✅ Higher Utility |
 
-- Fidelity Scores: KS similarity, correlation preservation
-- Privacy Scores: Membership inference AUC, differential privacy parameters
-- Utility Scores: ML model performance on synthetic vs. real data
+Membership inference tests are used to evaluate **privacy leakage risk**.
 
-## Dependencies
+---
 
-- sdv (Synthetic Data Vault)
-- pandas, numpy
-- scikit-learn, scipy
-- matplotlib, seaborn
-- streamlit
-- opacus, torch
+## 📊 Example Output
 
-## License
+| Metric Category | Example Metrics | Description |
+|------------------|------------------|--------------|
+| **Fidelity** | KS Similarity, Correlation Preservation | Measures realism of synthetic data |
+| **Privacy** | Membership Inference AUC, ε (DP Budget) | Measures resistance to data leakage |
+| **Utility** | ML Accuracy on Synthetic vs Real | Measures downstream usability |
 
-MIT
+Visual outputs include:
+- Distribution overlap plots  
+- Correlation matrix heatmaps  
+- Privacy vs. Utility trade-off visualizations  
+
+---
+
+## 🧰 Dependencies
+
+- **SDV (Synthetic Data Vault)**  
+- **Opacus** (for Differential Privacy)  
+- **PyTorch**, **scikit-learn**, **scipy**  
+- **pandas**, **numpy**  
+- **matplotlib**, **seaborn**  
+- **streamlit**
+
+Install all at once:
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 📜 License  
+**MIT License** – Open for personal and research use.
+
+---
+
+## 👤 Author  
+**Developed by [Ganesh Khetawat](https://github.com/gkganesh12)**  
+🎓 B.Tech CSE @ ADYPU | Certified Ethical Hacker | AI & Cybersecurity Enthusiast  
+
+🔗 [LinkedIn](https://www.linkedin.com/in/ganeshkhetawat/) • [GitHub](https://github.com/gkganesh12) • [Portfolio](http://ganeshkhetawat.unaux.com/portfolio)
